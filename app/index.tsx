@@ -8,7 +8,7 @@ const index = () => {
   useEffect(() => {
     setTimeout(() => {
       router.push("/welcome");
-    }, 3000);
+    }, 2000);
   }, []);
   return (
     <View style={style.container}>
