@@ -6,16 +6,18 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ScreenWrapper = ({ style, children }: ScreenWrapperProps) => {
-  const { top: paddingTop } = useSafeAreaInsets();
+  const { top: paddingTop, bottom: paddingBottom } = useSafeAreaInsets();
 
   return (
     <View
       style={[
         {
           paddingTop,
+          paddingBottom,
           backgroundColor: colors.neutral900,
           flex: 1,
         },
+        style,
       ]}
     >
       <StatusBar style="light" />
