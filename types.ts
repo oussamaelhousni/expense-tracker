@@ -1,5 +1,4 @@
 import { Timestamp } from "firebase/firestore";
-import { Icon } from "phosphor-react-native";
 import React, { ReactNode } from "react";
 import {
   TextInput,
@@ -78,7 +77,7 @@ export type TransactionType = {
 export type CategoryType = {
   label: string;
   value: string;
-  icon: Icon;
+  icon: ReactNode;
   bgColor: string;
 };
 export type ExpenseCategoriesType = {

@@ -4,6 +4,7 @@ import Input from "@/components/Input";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
 import { colors, spacingX, spacingY } from "@/constants/theme";
+import { useAuth } from "@/contexts/authContext";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -11,17 +12,26 @@ import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Alert, Pressable, StyleSheet, View } from "react-native";
 const Register = () => {
+  const { register } = useAuth();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
-    if (!email || !password) {
+  const handleSubmit = async () => {
+    if (!email || !password || !name) {
       Alert.alert("Error", "Please provide both email and password");
       return;
     }
+    setIsSubmitting(true);
+    const res = await register(name, email, password);
+    setIsSubmitting(false);
+    if (!res.success) {
+      Alert.alert("Error", res.msg);
+      return;
+    }
+    router.push("/login");
   };
   return (
     <ScreenWrapper>
