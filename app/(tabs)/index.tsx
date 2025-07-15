@@ -1,21 +1,21 @@
 import Button from "@/components/Button";
+import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
 import { auth } from "@/config/firebase";
 import { signOut } from "@firebase/auth";
 import React from "react";
-import { Text, View } from "react-native";
-const index = () => {
+const Home = () => {
   const logout = async () => {
     await signOut(auth);
   };
   return (
-    <View>
-      <Text>index</Text>
+    <ScreenWrapper>
+      <Typo>index</Typo>
       <Button onPress={logout}>
         <Typo>Log out</Typo>
       </Button>
-    </View>
+    </ScreenWrapper>
   );
 };
 
-export default index;
+export default Home;
