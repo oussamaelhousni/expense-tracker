@@ -4,7 +4,7 @@ import Typo from "@/components/Typo";
 import { auth } from "@/config/firebase";
 import { colors, radius, spacingX, spacingY } from "@/constants/theme";
 import { useAuth } from "@/contexts/authContext";
-import { getProfileImage } from "@/services/profileImageService";
+import { getProfileImage } from "@/services/imageService";
 import { accountOptionType } from "@/types";
 import { verticalScale } from "@/utils/styling";
 import AntDesign from "@expo/vector-icons/AntDesign";

@@ -15,7 +15,11 @@ const Button = ({ children, onPress, style, loading }: CustomButtonProps) => {
     );
   }
   return (
-    <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, style]}
+      onPress={onPress}
+      disabled={loading}
+    >
       {children}
     </TouchableOpacity>
   );
