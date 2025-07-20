@@ -6,14 +6,13 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ScreenWrapper = ({ style, children }: ScreenWrapperProps) => {
-  const { top: paddingTop, bottom: paddingBottom } = useSafeAreaInsets();
+  const { top: paddingTop } = useSafeAreaInsets();
 
   return (
     <View
       style={[
         {
           paddingTop: paddingTop + 10,
-          paddingBottom,
           backgroundColor: colors.neutral900,
           flex: 1,
         },
