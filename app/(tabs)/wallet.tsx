@@ -1,19 +1,41 @@
+import Loading from "@/components/Loading";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
-import { colors, radius, spacingX } from "@/constants/theme";
+import WalletListItem from "@/components/WalletListItem";
+import { colors, radius, spacingX, spacingY } from "@/constants/theme";
+import { useAuth } from "@/contexts/authContext";
+import useFetchData from "@/hooks/useFetchData";
+import { WalletType } from "@/types";
 import { verticalScale } from "@/utils/styling";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useRouter } from "expo-router";
-import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { orderBy, where } from "firebase/firestore";
+import React, { useMemo } from "react";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+
 const wallet = () => {
   const router = useRouter();
+  const { user } = useAuth();
+  const {
+    data: wallets,
+    isLoading,
+    error,
+  } = useFetchData<WalletType>("wallets", [
+    where("uid", "==", user?.uid),
+    orderBy("created", "desc"),
+  ]);
+
+  const totalBalance = useMemo(
+    () => wallets.reduce((acc, item) => item?.amount ?? 0 + acc, 0),
+    [wallets]
+  );
+
   return (
     <ScreenWrapper style={{ backgroundColor: "black" }}>
       <View style={styles.container}>
         <View style={styles.balanceView}>
           <Typo fontWeight={600} size={45}>
-            $14450.20
+            ${totalBalance.toFixed(2)}
           </Typo>
           <Typo size={14} color={colors.neutral500}>
             Total Balance
@@ -28,6 +50,15 @@ const wallet = () => {
             </TouchableOpacity>
           </View>
           {/*TODO: Wallet list*/}
+          {isLoading && <Loading />}
+          <FlatList
+            data={wallets}
+            keyExtractor={(item) => item.id!}
+            contentContainerStyle={styles.listStyle}
+            renderItem={({ item, index }) => {
+              return <WalletListItem wallet={item} index={index} />;
+            }}
+          />
         </View>
       </View>
     </ScreenWrapper>
@@ -53,6 +84,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  listStyle: {
+    paddingVertical: spacingY._25,
+
+    gap: 10,
   },
 });
 
