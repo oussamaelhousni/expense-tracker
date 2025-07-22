@@ -77,7 +77,7 @@ export type TransactionType = {
 export type CategoryType = {
   label: string;
   value: string;
-  icon: ReactNode;
+  icon: any;
   bgColor: string;
 };
 export type ExpenseCategoriesType = {
