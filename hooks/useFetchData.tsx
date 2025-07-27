@@ -19,7 +19,7 @@ const useFetchData = function <T>(
     if (!collectionName) return;
     const collectitonRef = collection(firestore, collectionName);
     const q = query(collectitonRef, ...constraints);
-
+    setIsLoading(true);
     const unsub = onSnapshot(
       q,
       (snapshot) => {

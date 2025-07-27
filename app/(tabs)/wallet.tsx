@@ -35,7 +35,7 @@ const wallet = () => {
       <View style={styles.container}>
         <View style={styles.balanceView}>
           <Typo fontWeight={600} size={45}>
-            ${totalBalance.toFixed(2)}
+            ${totalBalance?.toFixed(2)}
           </Typo>
           <Typo size={14} color={colors.neutral500}>
             Total Balance

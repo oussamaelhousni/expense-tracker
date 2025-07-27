@@ -2,11 +2,11 @@ import { CategoryType, ExpenseCategoriesType } from "@/types";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
 import Feather from "@expo/vector-icons/Feather";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-
 export const expenseCategories: ExpenseCategoriesType = {
   groceries: {
     label: "Groceries",
@@ -91,7 +91,7 @@ export const expenseCategories: ExpenseCategoriesType = {
 export const incomeCategory: CategoryType = {
   label: "Income",
   value: "income",
-  icon: () => <FontAwesome5 name="dollar" size={24} color="white" />,
+  icon: () => <FontAwesome name="dollar" size={24} color="white" />,
   bgColor: "#16a34a", // Dark
 };
 
